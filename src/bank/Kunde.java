@@ -15,11 +15,24 @@ public class Kunde {
     private String Nachname;
     private int Kundennummer;
     private Konto Konto;
-    
-    public Kunde(String vorname, String nachname, int kundennummer, Konto konto){
+
+    private Datenbank Datenbank;
+
+    public Kunde(String vorname, String nachname, int kundennummer, Konto konto, Datenbank datenbank){
+        Datenbank = datenbank;
+
         Vorname = vorname;
         Nachname = nachname;
-        Kundennummer = kundennummer; //Kundennummer hochzählen (letzte vorhandene Kundennummer ++)
+        Kundennummer = kundennummer;
+        Konto = konto;
+    }
+
+    public Kunde(String vorname, String nachname, Konto konto, Datenbank datenbank){
+        Datenbank = datenbank;
+
+        Vorname = vorname;
+        Nachname = nachname;
+        Kundennummer = datenbank.GetLastKontonummer()+1; //Kundennummer hochzählen (letzte vorhandene Kundennummer ++)
         Konto = konto;
     }
     
@@ -48,6 +61,6 @@ public class Kunde {
     }
     
     public void KundeAbspeichern(){
-        
+        Datenbank.AddCustomer(this);
     }
 }

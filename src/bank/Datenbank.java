@@ -14,41 +14,43 @@ import java.util.ArrayList;
  */
 public class Datenbank {
     private final String FILENAME = "Kunden.txt";
-    private final String DATENBANK_REGEX = "<.*\\|.*\\|.*\\|.*>";
-    
+    private final String DATENBANK_REGEX = "<.*\\;.*\\;.*\\;.*>";
+
+    private File KundenFile;
     private static ArrayList<Kunde> Kunden;
-        
+
     public Datenbank(){
         Kunden = new ArrayList<>();
-        File file = new File(FILENAME);
-        if (!file.exists()){
-            CreateFile(file);
+        KundenFile = new File(FILENAME);
+
+        if (!KundenFile.exists()){
+            CreateFile(KundenFile);
         }
         else {
-            ReadFile(file);
+            ReadFile(KundenFile);
         }
     }
-    
+
     private void CreateFile(File file){
         try
         {
             file.createNewFile();
         }
-        catch(Exception ex){
+        catch(IOException ex){
             System.out.println(ex.getMessage());
         }
     }
-    
+
     private void ReadFile(File file){
-        try 
+        try
         {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            
+
             String line;
             do {
                 line = bufferedReader.readLine();
-                
+
                 if (line.matches(DATENBANK_REGEX)){
                     String[] splittedLine = line.split(DATENBANK_REGEX);
                     String vorname = splittedLine[0];
@@ -56,23 +58,52 @@ public class Datenbank {
                     int kundennummer = Integer.parseInt(splittedLine[2]);
                     int kontostand = Integer.parseInt(splittedLine[3]);
                     Konto konto = new Konto();
-                    Kunde kunde = new Kunde(vorname, nachname, kundennummer, konto);
+                    Kunde kunde = new Kunde(vorname, nachname, kundennummer, konto, this);
                     AddCustomer(kunde);
                 }
-                
-            } while (null != line);           
+
+            } while (null != line);
         }
         catch(Exception ex){
             System.out.println(ex.getMessage());
         }
     }
-    
+
+    private void WriteToFile(File file, String string){
+        try{
+            FileWriter fileWriter = new FileWriter(file, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            bufferedWriter.write(string);
+            bufferedWriter.newLine();
+        }
+        catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    private void WriteCustomerToFile(File file, Kunde kunde){
+        String customer = kunde.GetVorname()+ ";" + kunde.GetNachname() + ";" + kunde.GetKundennummer()/* + ";" + kunde.getKonto().getKontostand()*/;
+        WriteToFile(file, customer);
+    }
+
     public void AddCustomer(Kunde kunde){
         Kunden.add(kunde);
-        
+        WriteCustomerToFile(KundenFile, kunde);
     }
-    
-    public void RemoveCustomer(Kunde kunde){
+
+    public int GetLastKontonummer(){
+        if (Kunden.size()>=1)
+        {
+            return Kunden.get(Kunden.size()-1).GetKundennummer();
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    /*public void RemoveCustomer(Kunde kunde){
         Kunden.remove(kunde);
-    }
+    }*/
 }
