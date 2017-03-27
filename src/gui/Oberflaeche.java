@@ -1,3 +1,7 @@
+package gui;
+
+import gui.Anlage;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
