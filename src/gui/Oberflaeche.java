@@ -1,5 +1,3 @@
-package gui;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -37,24 +35,30 @@ public class Oberflaeche extends JFrame {
         derButton3.setBounds(450,500,150,20);
         derButton1.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
-                   
+                    verarbeiteButtonClick1();
                 }
-                //    });
-                //derButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-                //        public void mousePressed(MouseEvent e) {
-                //            vearbeiteButtonClick2();
-                //        }
-                //    });
-                //derButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-                //        public void mousePressed(MouseEvent e) {
-                //            vearbeiteButtonClick3();
-                //        }
-                 });
-
-
-               
-        
-    
-            
-        }
+            });
+        derButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(MouseEvent e) {
+                    verarbeiteButtonClick2();
+                }
+            });
+        derButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(MouseEvent e) {
+                    verarbeiteButtonClick3();
+                }
+            });
     }
+
+    void verarbeiteButtonClick1(){
+        new Anlage();
+    }
+
+    void verarbeiteButtonClick2(){
+        new Kontoauszug();
+    }
+
+     void verarbeiteButtonClick3(){
+        new Transaktion();
+    }
+}
