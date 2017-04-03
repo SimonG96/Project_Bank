@@ -52,6 +52,7 @@ public class Oberflaeche extends JFrame {
                     verarbeiteButtonClick3();
                 }
             });
+
     }
 
     void verarbeiteButtonClick1(){
@@ -62,7 +63,7 @@ public class Oberflaeche extends JFrame {
         new Kontoauszug();
     }
 
-     void verarbeiteButtonClick3(){
+    void verarbeiteButtonClick3(){
         new Transaktion();
     }
 }
