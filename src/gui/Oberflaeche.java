@@ -36,8 +36,9 @@ public class Oberflaeche extends JFrame {
 
         btTransaktion.setBounds(450,500,150,20);
 
-        this.setVisible(true);
+
         this.add(panel1);
+        this.setVisible(true);
 
         btUserAnlegen.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
