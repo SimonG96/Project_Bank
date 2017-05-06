@@ -241,3 +241,8 @@ manifest.mf
 *.class
 *.ctxt
 *.bluej
+
+#############
+## ProjectBank
+#############
+*.txt
