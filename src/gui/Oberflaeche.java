@@ -24,7 +24,7 @@ public class Oberflaeche extends JFrame {
         setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel1 = new JPanel();
-        ImageIcon pic = new ImageIcon("H:/SAE/Neuer Ordner/2017.03.20 - Projekt (Bank)/bank-05.jpg");
+        ImageIcon pic = new ImageIcon("bank-05.jpg");
         panel1.add(new JLabel(pic));
         this.add(panel1);
         this.pack();
