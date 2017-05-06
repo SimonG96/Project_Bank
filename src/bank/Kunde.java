@@ -20,7 +20,7 @@ public class Kunde {
 
     private Datenbank Datenbank;
 
-    public Kunde(String vorname, String nachname, String ort, String straße, int kundennummer, /*Konto konto,*/int kontonummer, int kontostand, Datenbank datenbank){
+    public Kunde(String vorname, String nachname, String ort, String straße, int kundennummer, /*Konto konto,*/int kontonummer, double kontostand, Datenbank datenbank){
         Datenbank = datenbank;
 
         Vorname = vorname;
