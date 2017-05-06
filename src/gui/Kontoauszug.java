@@ -1,21 +1,19 @@
 package gui; 
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
 public class Kontoauszug extends JFrame {
-    JButton derButton1 = new JButton("Bestätigen");
-    JTextField dieEingabe1 = new JTextField(20);
-    JTextField dieEingabe2 = new JTextField(20);
-    JTextField dieEingabe3 = new JTextField(20);
-    JLabel dasLabel1 = new JLabel("Vorname");
-    JLabel dasLabel2 = new JLabel("Nachname");
-    JLabel dasLabel3 = new JLabel("Kontonummer");
+    JButton btBestaetigen = new JButton("Bestätigen");
+    JTextField tfVorname = new JTextField(20);
+    JTextField tfNachname = new JTextField(20);
+    JTextField tfKontonummer = new JTextField(20);
+    JLabel lbVorname = new JLabel("Vorname");
+    JLabel lbNachname = new JLabel("Nachname");
+    JLabel lbKontonummer = new JLabel("Kontonummer");
     public static void main(String[] args) {
         new Kontoauszug();
     }
@@ -27,21 +25,21 @@ public class Kontoauszug extends JFrame {
         this.pack();
         this.setVisible(true);
         this.setSize(300,225);
-        add(derButton1);
-        add(dieEingabe1);
-        add(dieEingabe2);
-        add(dieEingabe3);
-        add(dasLabel1);
-        add(dasLabel2);
-        add(dasLabel3);
-        derButton1.setBounds(50,150,150,20);
-        dieEingabe1.setBounds(10,10,150,20);
-        dieEingabe2.setBounds(10,50,150,20);
-        dieEingabe3.setBounds(10,90,150,20);
-        dasLabel1.setBounds(170,10,150,20);
-        dasLabel2.setBounds(170,50,150,20);
-        dasLabel3.setBounds(170,90,150,20);
-        derButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        add(btBestaetigen);
+        add(tfVorname);
+        add(tfNachname);
+        add(tfKontonummer);
+        add(lbVorname);
+        add(lbNachname);
+        add(lbKontonummer);
+        btBestaetigen.setBounds(50,150,150,20);
+        tfVorname.setBounds(10,10,150,20);
+        tfNachname.setBounds(10,50,150,20);
+        tfKontonummer.setBounds(10,90,150,20);
+        lbVorname.setBounds(170,10,150,20);
+        lbNachname.setBounds(170,50,150,20);
+        lbKontonummer.setBounds(170,90,150,20);
+        btBestaetigen.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
                     verarbeiteButtonClick1();
                 }

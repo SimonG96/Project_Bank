@@ -1,16 +1,13 @@
 package gui;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
 public class Transaktion extends JFrame {
-    JButton derButton1 = new JButton("Überweisung");
-    JButton derButton2 = new JButton("Ein-/Auszahlung");
+    JButton btUeberweisung = new JButton("Überweisung");
+    JButton btZahlung = new JButton("Ein-/Auszahlung");
     public static void main(String[] args) {
         new Transaktion();
     }
@@ -22,16 +19,16 @@ public class Transaktion extends JFrame {
         this.pack();
         this.setVisible(true);
         this.setSize(300,150);
-        add(derButton1);
-        add(derButton2);
-        derButton1.setBounds(75,10,150,20);
-        derButton2.setBounds(75,40,150,20);
-        derButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        add(btUeberweisung);
+        add(btZahlung);
+        btUeberweisung.setBounds(75,10,150,20);
+        btZahlung.setBounds(75,40,150,20);
+        btUeberweisung.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
                     verarbeiteButtonClick1();
                 }
             });
-                    derButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+                    btZahlung.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
                     verarbeiteButtonClick2();
                 }

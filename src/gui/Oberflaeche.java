@@ -1,7 +1,5 @@
 package gui;
 
-import gui.Anlage;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,9 +9,9 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class Oberflaeche extends JFrame {
-    JButton derButton1 = new JButton("Neuen User anlegen");
-    JButton derButton2 = new JButton("Kontoauszug");
-    JButton derButton3 = new JButton("Transaktion");
+    JButton btUserAnlegen = new JButton("Neuen User anlegen");
+    JButton btKontoauszug = new JButton("Kontoauszug");
+    JButton btTransaktion = new JButton("Transaktion");
     public static void main(String[] args) {
         new Oberflaeche();
     }
@@ -28,30 +26,30 @@ public class Oberflaeche extends JFrame {
         panel1.add(new JLabel(pic));
         this.pack();
         this.setSize(700,600);
-        add(derButton1);
-        add(derButton2);
-        add(derButton3);
+        add(btUserAnlegen);
+        add(btKontoauszug);
+        add(btTransaktion);
         panel1.setBounds(30,30,600,500);
-        derButton1.setBounds(50,500,150,20);
+        btUserAnlegen.setBounds(50,500,150,20);
 
-        derButton2.setBounds(250,500,150,20);
+        btKontoauszug.setBounds(250,500,150,20);
 
-        derButton3.setBounds(450,500,150,20);
+        btTransaktion.setBounds(450,500,150,20);
 
         this.setVisible(true);
         this.add(panel1);
 
-        derButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btUserAnlegen.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
                     verarbeiteButtonClick1();
                 }
             });
-        derButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btKontoauszug.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
                     verarbeiteButtonClick2();
                 }
             });
-        derButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btTransaktion.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
                     verarbeiteButtonClick3();
                 }
