@@ -5,6 +5,8 @@
  */
 package bank;
 
+import gui.*;
+
 /**
  *
  * @author s.gockner
@@ -14,8 +16,14 @@ public class Bank {
     /**
      * @param args the command line arguments
      */
+    
+    public static Datenbank Datenbank;
+    
     public static void main(String[] args) {
         // TODO code application logic here
+        Datenbank = new Datenbank();
+        
+        new Oberflaeche();
     }
     
 }
