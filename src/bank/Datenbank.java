@@ -20,10 +20,10 @@ public class Datenbank {
     private final String KONTENBEWEGUNG_DATENBANK_REGEX = "<.*\\;.*\\;.*\\;.*>";
 
     private File KundenFile;
-    private static ArrayList<Kunde> Kunden;
+    private ArrayList<Kunde> Kunden;
     
     private File KontenbewegungenFile;
-    private static ArrayList<Kontenbewegung> Kontenbewegungen;
+    private ArrayList<Kontenbewegung> Kontenbewegungen;
 
     public Datenbank(){
         Kunden = new ArrayList<>();
@@ -77,10 +77,10 @@ public class Datenbank {
                     int kundennummer = Integer.parseInt(splittedLine[4]);
                     int kontonummer = Integer.parseInt(splittedLine[5]);
                     
-                    int kontostand = 0;
+                    double kontostand = 0;
                     if (!splittedLine[4].equals("0"))
                     {
-                        kontostand = Integer.parseInt(splittedLine[4]);
+                        kontostand = Double.parseDouble(splittedLine[4]);
                     }
                     
                     //Konto konto = new Konto(kontonummer, kontostand, this);
@@ -182,7 +182,18 @@ public class Datenbank {
         {
             return 0;
         }
-    } 
+    }
+
+    public Konto GetKontoByKontonummer(int kontonummer){
+        for (int i = 0; i < Kunden.size(); i++){
+            Konto konto = Kunden.get(i).GetKonto();
+            if (konto.getKontonr() == kontonummer){
+                return konto;
+            }
+        }
+
+        return null;
+    }
 
     /*public void RemoveCustomer(Kunde kunde){
         Kunden.remove(kunde);
