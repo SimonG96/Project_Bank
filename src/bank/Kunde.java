@@ -13,26 +13,32 @@ public class Kunde {
     
     private String Vorname;
     private String Nachname;
+    private String Ort;
+    private String Straße;
     private int Kundennummer;
     private Konto Konto;
 
     private Datenbank Datenbank;
 
-    public Kunde(String vorname, String nachname, int kundennummer, /*Konto konto,*/int kontonummer, int kontostand, Datenbank datenbank){
+    public Kunde(String vorname, String nachname, String ort, String straße, int kundennummer, /*Konto konto,*/int kontonummer, int kontostand, Datenbank datenbank){
         Datenbank = datenbank;
 
         Vorname = vorname;
         Nachname = nachname;
+        Ort = ort;
+        Straße = straße;
         Kundennummer = kundennummer;
         //Konto = konto;
         Konto = new Konto(kontonummer, kontostand, Datenbank, this);
     }
 
-    public Kunde(String vorname, String nachname, /*Konto konto,*/ Datenbank datenbank){
+    public Kunde(String vorname, String nachname, String ort, String straße, /*Konto konto,*/ Datenbank datenbank){
         Datenbank = datenbank;
 
         Vorname = vorname;
         Nachname = nachname;
+        Ort = ort;
+        Straße = straße;
         Kundennummer = datenbank.GetLastKundennummer()+1; //Kundennummer hochzählen (letzte vorhandene Kundennummer ++)
         //Konto = konto;
         int kontonr = datenbank.GetLastKontonummer() + 1; //Kontonummer hochzählen (letzte vorhandene Kontonummer ++)
@@ -53,6 +59,14 @@ public class Kunde {
     
     public String GetNachname(){
         return Nachname;
+    }
+
+    public String GetOrt() {
+        return Ort;
+    }
+
+    public String GetStraße() {
+        return Straße;
     }
     
     public int GetKundennummer(){

@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class Datenbank {
     private final String KUNDEN_FILENAME = "Kunden.txt";
-    private final String KUNDEN_DATENBANK_REGEX = "<.*\\;.*\\;.*\\;.*\\;.*>";
-    
+    private final String KUNDEN_DATENBANK_REGEX = "<.*\\;.*\\;.*\\;.*\\;.*\\;.*\\;.*>";
+
     private final String KONTENBEWEGUNG_FILENAME = "Kontenbewegung.txt";
     private final String KONTENBEWEGUNG_DATENBANK_REGEX = "<.*\\;.*\\;.*\\;.*>";
 
@@ -72,8 +72,10 @@ public class Datenbank {
                     String[] splittedLine = entry.SplitEntry(KUNDEN_DATENBANK_REGEX);
                     String vorname = splittedLine[0];
                     String nachname = splittedLine[1];
-                    int kundennummer = Integer.parseInt(splittedLine[2]);
-                    int kontonummer = Integer.parseInt(splittedLine[3]);
+                    String ort = splittedLine[2];
+                    String straße = splittedLine[3];
+                    int kundennummer = Integer.parseInt(splittedLine[4]);
+                    int kontonummer = Integer.parseInt(splittedLine[5]);
                     
                     int kontostand = 0;
                     if (!splittedLine[4].equals("0"))
@@ -82,7 +84,7 @@ public class Datenbank {
                     }
                     
                     //Konto konto = new Konto(kontonummer, kontostand, this);
-                    Kunde kunde = new Kunde(vorname, nachname, kundennummer, /*konto,*/kontonummer, kontostand, this);
+                    Kunde kunde = new Kunde(vorname, nachname, ort, straße, kundennummer, /*konto,*/kontonummer, kontostand, this);
                     Kunden.add(kunde);
                 }
 
@@ -141,7 +143,7 @@ public class Datenbank {
     }
 
     private void WriteCustomerToFile(File file, Kunde kunde){
-        String customer = "<" + kunde.GetVorname()+ ";" + kunde.GetNachname() + ";" + kunde.GetKundennummer() + ";" + kunde.GetKonto().getKontonr()+ ";" + kunde.GetKonto().getKontost() + ">";
+        String customer = "<" + kunde.GetVorname()+ ";" + kunde.GetNachname() + ";" + kunde.GetOrt() + ";" + kunde.GetStraße() + ";" + kunde.GetKundennummer() + ";" + kunde.GetKonto().getKontonr()+ ";" + kunde.GetKonto().getKontost() + ">";
         WriteToFile(file, customer);
     }
     
