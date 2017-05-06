@@ -26,17 +26,21 @@ public class Oberflaeche extends JFrame {
         JPanel panel1 = new JPanel();
         ImageIcon pic = new ImageIcon("bank-05.jpg");
         panel1.add(new JLabel(pic));
-        this.add(panel1);
         this.pack();
-        this.setVisible(true);
         this.setSize(700,600);
         add(derButton1);
         add(derButton2);
         add(derButton3);
         panel1.setBounds(30,30,600,500);
         derButton1.setBounds(50,500,150,20);
+
         derButton2.setBounds(250,500,150,20);
+
         derButton3.setBounds(450,500,150,20);
+
+        this.setVisible(true);
+        this.add(panel1);
+
         derButton1.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
                     verarbeiteButtonClick1();
@@ -52,6 +56,8 @@ public class Oberflaeche extends JFrame {
                     verarbeiteButtonClick3();
                 }
             });
+
+
 
     }
 
