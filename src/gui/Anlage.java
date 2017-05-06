@@ -1,12 +1,11 @@
 package gui; 
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import bank.*;
 
 public class Anlage extends JFrame {
     JButton derButton1 = new JButton("Kunden anlegen");
@@ -53,14 +52,15 @@ public class Anlage extends JFrame {
         dasLabel3.setBounds(170,90,150,20);
         dasLabel4.setBounds(170,130,150,20);
         dasLabel5.setBounds(170,170,150,20);
-     //   derButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-        //       public void mousePressed(MouseEvent e) {
-        //            verarbeiteButtonClick1();
+        derButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+               public void mousePressed(MouseEvent e) {
+                    verarbeiteButtonClick1();
                 }
-          //  });
-    //}
-    //void verarbeiteButtonClick1(){
-    //    Kunde kunde = new Kunde(dieEingabe1.getText,dieEingabe2.getText);
-     //   kunde.KundeAbspeichern();
-   // }
+            });
+    }
+    void verarbeiteButtonClick1(){
+        Kunde kunde = new Kunde(dieEingabe1.getText(), dieEingabe2.getText(), Bank.Datenbank);
+        kunde.KundeAbspeichern();
+        System.out.println(kunde.GetVorname() + "; " + kunde.GetNachname());
+    }
 }
