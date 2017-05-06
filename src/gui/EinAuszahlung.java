@@ -166,4 +166,6 @@ public class EinAuszahlung extends JFrame {
         JOptionPane.showMessageDialog(this, "Einzahlung von " + betrag + " war erfolgreich.\n Ihr Kontostand beträgt " + konto.getKontost() + ".", "Einzahlung erfolgreich", JOptionPane.PLAIN_MESSAGE);
         this.dispose();
     }
+
+    //TODO: Create void Auszahlung()
 }
