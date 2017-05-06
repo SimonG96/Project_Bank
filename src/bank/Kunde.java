@@ -18,22 +18,25 @@ public class Kunde {
 
     private Datenbank Datenbank;
 
-    public Kunde(String vorname, String nachname, int kundennummer, Konto konto, Datenbank datenbank){
+    public Kunde(String vorname, String nachname, int kundennummer, /*Konto konto,*/int kontonummer, int kontostand, Datenbank datenbank){
         Datenbank = datenbank;
 
         Vorname = vorname;
         Nachname = nachname;
         Kundennummer = kundennummer;
-        Konto = konto;
+        //Konto = konto;
+        Konto = new Konto(kontonummer, kontostand, Datenbank, this);
     }
 
-    public Kunde(String vorname, String nachname, Konto konto, Datenbank datenbank){
+    public Kunde(String vorname, String nachname, /*Konto konto,*/ Datenbank datenbank){
         Datenbank = datenbank;
 
         Vorname = vorname;
         Nachname = nachname;
-        Kundennummer = datenbank.GetLastKontonummer()+1; //Kundennummer hochzählen (letzte vorhandene Kundennummer ++)
-        Konto = konto;
+        Kundennummer = datenbank.GetLastKundennummer()+1; //Kundennummer hochzählen (letzte vorhandene Kundennummer ++)
+        //Konto = konto;
+        int kontonr = datenbank.GetLastKontonummer() + 1; //Kontonummer hochzählen (letzte vorhandene Kontonummer ++)
+        Konto = new Konto(kontonr, 0, datenbank, this);
     }
     
     public void SetVorname(String vorname){
