@@ -90,8 +90,8 @@ public class Anlage extends JFrame {
 
             if (dialogResult == JOptionPane.CANCEL_OPTION){
                 this.dispose();
+                return;
             }
-
         }
         else
         {
