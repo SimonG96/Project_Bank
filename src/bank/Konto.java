@@ -12,44 +12,43 @@ package bank;
 public class Konto {
     
     private int Kontonr;
-    private int Kontost;
+    private double Kontost;
     
     private Datenbank Datenbank;
     private Kunde Kunde;
 
-public Konto (int kontonr, int kontost, Datenbank datenbank, Kunde kunde){
-    Datenbank = datenbank;
-    Kunde = kunde;
+    public Konto (int kontonr, double kontost, Datenbank datenbank, Kunde kunde){
+        Datenbank = datenbank;
+        Kunde = kunde;
     
-    this.Kontonr = kontonr;
-    this.Kontost = kontost;
+        this.Kontonr = kontonr;
+        this.Kontost = kontost;
+    }
 
-}
+    public int getKontonr(){
+        return Kontonr;
+    }
 
-public int getKontonr(){
-    return Kontonr;
-}
+    public double getKontost (){
+        return Kontost;
+    }
 
-public int getKontost (){
+    public Kunde getKunde() {
+        return Kunde;
+    }
+
+    public void Einzahlung(double mehrung) {
+
+        Kontost += mehrung;
+        Kontenbewegung kontenbewegung = new Kontenbewegung(Kunde.GetKundennummer(), Kontonr, Kontost, mehrung);
+        Datenbank.AddKontenbewegung(kontenbewegung);
+    }
+
+    public void Auszahlung (double minderung){
     
-    return Kontost;
-}
-
-public void Einzahlung (int mehrung){
-    
-    Kontost += mehrung;
-    Kontenbewegung kontenbewegung = new Kontenbewegung(Kunde.GetKundennummer(), Kontonr, Kontost, mehrung);
-    Datenbank.AddKontenbewegung(kontenbewegung);
-}
-
-public void Auszahlung (int minderung){
-    
-    Kontost -= minderung;
-    Kontenbewegung kontenbewegung = new Kontenbewegung(Kunde.GetKundennummer(), Kontonr, Kontost, minderung);
-    Datenbank.AddKontenbewegung(kontenbewegung);
-}
-
-    
-
+        Kontost -= minderung;
+        Kontenbewegung kontenbewegung = new Kontenbewegung(Kunde.GetKundennummer(), Kontonr, Kontost, minderung);
+        Datenbank.AddKontenbewegung(kontenbewegung);
+    }
 }
 
