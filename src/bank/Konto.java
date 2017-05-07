@@ -47,7 +47,7 @@ public class Konto {
     public void Auszahlung (double minderung){
     
         Kontost -= minderung;
-        Kontenbewegung kontenbewegung = new Kontenbewegung(Kunde.GetKundennummer(), Kontonr, Kontost, minderung);
+        Kontenbewegung kontenbewegung = new Kontenbewegung(Kunde.GetKundennummer(), Kontonr, Kontost, -minderung);
         Datenbank.AddKontenbewegung(kontenbewegung);
     }
 }
