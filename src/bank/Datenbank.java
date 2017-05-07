@@ -195,6 +195,15 @@ public class Datenbank {
         return null;
     }
 
+    public boolean IsAnyCustomerAvailable(){
+        if (Kunden.size() == 0){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
     /*public void RemoveCustomer(Kunde kunde){
         Kunden.remove(kunde);
     }*/
