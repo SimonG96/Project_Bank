@@ -5,9 +5,14 @@ package gui;
 * @author d.ferber
 */
 
+import bank.Bank;
+import bank.Kontenbewegung;
+import bank.Konto;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class Kontoauszug extends JFrame {
     JButton btBestaetigen = new JButton("Bestätigen");
@@ -49,6 +54,119 @@ public class Kontoauszug extends JFrame {
             });
     }
     void verarbeiteButtonClick1(){
-        new Auszug();
+        int kontonummer = 0;
+        String vorname = tfVorname.getText();
+        String nachname = tfNachname.getText();
+
+        try{
+            kontonummer = Integer.parseInt(tfKontonummer.getText());
+        }
+        catch (NumberFormatException ex){
+            String message = "Geben Sie eine Zahl als Kontonummer ein. \n\n" +
+                    "Drücken Sie Abbrechen um den Vorgang abzubrechen.";
+
+            int dialogResult = JOptionPane.showConfirmDialog(this, message, "Falsches Format", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+
+            if (dialogResult == JOptionPane.CANCEL_OPTION){
+                this.dispose();
+                return;
+            }
+            else if (dialogResult == JOptionPane.OK_OPTION){
+                return;
+            }
+        }
+
+        if (vorname.isEmpty() || nachname.isEmpty())
+        {
+            String message = "Bitte füllen Sie folgende Felder aus: \n";
+
+            if (vorname.isEmpty()){
+                message += "\t - Vorname \n";
+            }
+
+            if (nachname.isEmpty()){
+                message += "\t - Nachname \n";
+            }
+
+            message += "\n Drücken Sie Abbrechen um den Vorgang abzubrechen.";
+
+            int dialogResult = JOptionPane.showConfirmDialog(this, message, "Unvollständige Eingabe", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+
+            if (dialogResult == JOptionPane.CANCEL_OPTION){
+                this.dispose();
+                return;
+            }
+            else if (dialogResult == JOptionPane.OK_OPTION){
+                return;
+            }
+        }
+
+        Konto konto = Bank.Datenbank.GetKontoByKontonummer(kontonummer);
+
+        if (konto == null){
+            String message = "Ungültige Kontonummer. \n\n" +
+                    "Drücken Sie Abbrechen um den Vorgang abzubrechen.";
+
+            int dialogResult = JOptionPane.showConfirmDialog(this, message, "Ungültige Benutzerdaten", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+
+            if (dialogResult == JOptionPane.CANCEL_OPTION){
+                this.dispose();
+                return;
+            }
+            else if (dialogResult == JOptionPane.OK_OPTION){
+                return;
+            }
+        }
+
+        if (!konto.getKunde().GetVorname().equals(vorname)){
+            String message = "Der Vorname stimmt nicht mit der angegebenen Kontonummer überein. \n" +
+                    "Ändern sie entweder den Vornamen oder die Kontonummer.\n\n" +
+                    "Drücken Sie Abbrechen um den Vorgang abzubrechen.";
+
+            int dialogResult = JOptionPane.showConfirmDialog(this, message, "Ungültige Benutzerdaten", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+
+            if (dialogResult == JOptionPane.CANCEL_OPTION){
+                this.dispose();
+                return;
+            }
+            else if (dialogResult == JOptionPane.OK_OPTION){
+                return;
+            }
+        }
+
+        if (!konto.getKunde().GetNachname().equals(nachname)){
+            String message = "Der Nachname stimmt nicht mit der angegebenen Kontonummer überein. \n" +
+                    "Ändern sie entweder den Nachnamen oder die Kontonummer.\n\n" +
+                    "Drücken Sie Abbrechen um den Vorgang abzubrechen.";
+
+            int dialogResult = JOptionPane.showConfirmDialog(this, message, "Ungültige Benutzerdaten", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+
+            if (dialogResult == JOptionPane.CANCEL_OPTION){
+                this.dispose();
+                return;
+            }
+            else if (dialogResult == JOptionPane.OK_OPTION){
+                return;
+            }
+        }
+
+        List<Kontenbewegung> listOfKontenbewegungen = Bank.Datenbank.GetAllKontenbewegungenForOneKontoByKontonummer(kontonummer);
+
+        if (listOfKontenbewegungen == null){
+            String message = "Ungültige Kontonummer. \n\n" +
+                    "Drücken Sie Abbrechen um den Vorgang abzubrechen.";
+
+            int dialogResult = JOptionPane.showConfirmDialog(this, message, "Ungültige Benutzerdaten", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+
+            if (dialogResult == JOptionPane.CANCEL_OPTION){
+                this.dispose();
+                return;
+            }
+            else if (dialogResult == JOptionPane.OK_OPTION){
+                return;
+            }
+        }
+
+        new Auszug(listOfKontenbewegungen);
     }
 }
