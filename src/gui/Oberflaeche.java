@@ -5,13 +5,14 @@ package gui;
 * @author d.ferber
 */
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.*;
+import bank.Bank;
+import bank.Datenbank;
+
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Oberflaeche extends JFrame {
     JButton btUserAnlegen = new JButton("Neuen User anlegen");
@@ -61,7 +62,20 @@ public class Oberflaeche extends JFrame {
                 }
             });
 
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int retValue = JOptionPane.showConfirmDialog(Oberflaeche.this ,"Wollen Sie die Anwendung wirklich schließen?", "Anwendung schließen", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
+                if (retValue == JOptionPane.NO_OPTION){
+                    setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                }
+                else if (retValue == JOptionPane.YES_OPTION){
+                    Bank.Datenbank.OnClosing();
+                    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                }
+            }
+        });
 
     }
 
@@ -70,10 +84,24 @@ public class Oberflaeche extends JFrame {
     }
 
     void verarbeiteButtonClick2(){
-        new Kontoauszug();
+        if (Bank.Datenbank.IsAnyCustomerAvailable())
+        {
+            new Kontoauszug();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Es ist kein Kunde angelegt. Bitte legen Sie zuerst einen Kunden an und versuchen Sie es dann erneut.", "Kein Kunde angelegt", JOptionPane.PLAIN_MESSAGE);
+        }
     }
 
-    void verarbeiteButtonClick3(){
-        new Transaktion();
+    void verarbeiteButtonClick3() {
+        if (Bank.Datenbank.IsAnyCustomerAvailable())
+        {
+            new Transaktion();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Es ist kein Kunde angelegt. Bitte legen Sie zuerst einen Kunden an und versuchen Sie es dann erneut.", "Kein Kunde angelegt", JOptionPane.PLAIN_MESSAGE);
+        }
     }
 }
