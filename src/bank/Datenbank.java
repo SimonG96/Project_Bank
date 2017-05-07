@@ -7,6 +7,7 @@ package bank;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -236,6 +237,11 @@ public class Datenbank {
     }
 
     public Konto GetKontoByKontonummer(int kontonummer){
+
+        if (kontonummer > Kunden.size()){
+            return null;
+        }
+
         for (int i = 0; i < Kunden.size(); i++){
             Konto konto = Kunden.get(i).GetKonto();
             if (konto.getKontonr() == kontonummer){
@@ -262,6 +268,23 @@ public class Datenbank {
         for (int i = 0; i < Kunden.size(); i++){
             WriteCustomerToFile(KundenFile, Kunden.get(i));
         }
+    }
+
+    public List<Kontenbewegung> GetAllKontenbewegungenForOneKontoByKontonummer(int kontonummer){
+
+        if (kontonummer > Kunden.size()){
+            return null;
+        }
+
+        List<Kontenbewegung> listOfKontenbewegungen = new ArrayList<Kontenbewegung>();
+
+        for (int i = 0; i < Kontenbewegungen.size(); i++){
+            if (Kontenbewegungen.get(i).GetKontonummer() == kontonummer){
+                listOfKontenbewegungen.add(Kontenbewegungen.get(i));
+            }
+        }
+
+        return listOfKontenbewegungen;
     }
 
     /*public void RemoveCustomer(Kunde kunde){
