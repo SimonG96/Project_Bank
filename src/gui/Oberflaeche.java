@@ -1,5 +1,7 @@
 package gui;
 
+import bank.Bank;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -65,10 +67,24 @@ public class Oberflaeche extends JFrame {
     }
 
     void verarbeiteButtonClick2(){
-        new Kontoauszug();
+        if (Bank.Datenbank.IsAnyCustomerAvailable())
+        {
+            new Kontoauszug();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Es ist kein Kunde angelegt. Bitte legen Sie zuerst einen Kunden an und versuchen Sie es dann erneut.", "Kein Kunde angelegt", JOptionPane.PLAIN_MESSAGE);
+        }
     }
 
     void verarbeiteButtonClick3(){
-        new Transaktion();
+        if (Bank.Datenbank.IsAnyCustomerAvailable())
+        {
+            new Transaktion();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Es ist kein Kunde angelegt. Bitte legen Sie zuerst einen Kunden an und versuchen Sie es dann erneut.", "Kein Kunde angelegt", JOptionPane.PLAIN_MESSAGE);
+        }
     }
 }
