@@ -1,5 +1,10 @@
 package gui;
 
+/**
+*
+* @author d.ferber
+*/
+
 import javax.swing.JFrame;
 import java.awt.*;
 import javax.swing.*;

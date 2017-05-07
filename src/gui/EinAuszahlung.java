@@ -1,6 +1,12 @@
 package gui;
 
+/**
+*
+* @author d.ferber
+*/
+
 import bank.Bank;
+import bank.Datenbank;
 import bank.Konto;
 
 import javax.swing.JFrame;
@@ -55,11 +61,6 @@ public class EinAuszahlung extends JFrame {
         btEinzahlen.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
                     Einzahlen();
-                }
-        });
-        btAuszahlen.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    Auszahlen();
                 }
         });
     }
@@ -170,109 +171,5 @@ public class EinAuszahlung extends JFrame {
         this.dispose();
     }
 
-    void Auszahlen(){
-        int kontonummer = 0;
-        double betrag = 0.0;
-        String vorname = tfVorname.getText();
-        String nachname = tfNachname.getText();
-
-        try{
-            kontonummer = Integer.parseInt(tfKontonummer.getText());
-        }
-        catch (NumberFormatException ex){
-            String message = "Geben Sie eine Zahl als Kontonummer ein. \n\n" +
-                    "Drücken Sie Abbrechen um den Vorgang abzubrechen.";
-
-            int dialogResult = JOptionPane.showConfirmDialog(this, message, "Falsches Format", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
-
-            if (dialogResult == JOptionPane.CANCEL_OPTION){
-                this.dispose();
-                return;
-            }
-            else if (dialogResult == JOptionPane.OK_OPTION){
-                return;
-            }
-        }
-
-        try{
-            betrag = Double.parseDouble(tfBetrag.getText());
-        }
-        catch (NumberFormatException ex){
-            String message = "Geben Sie eine Zahl als Betrag ein. \n\n" +
-                    "Drücken Sie Abbrechen um den Vorgang abzubrechen.";
-
-            int dialogResult = JOptionPane.showConfirmDialog(this, message, "Falsches Format", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
-
-            if (dialogResult == JOptionPane.CANCEL_OPTION){
-                this.dispose();
-                return;
-            }
-            else if (dialogResult == JOptionPane.OK_OPTION){
-                return;
-            }
-        }
-
-        if (vorname.isEmpty() || nachname.isEmpty())
-        {
-            String message = "Bitte füllen Sie folgende Felder aus: \n";
-
-            if (vorname.isEmpty()){
-                message += "\t - Vorname \n";
-            }
-
-            if (nachname.isEmpty()){
-                message += "\t - Nachname \n";
-            }
-
-            message += "\n Drücken Sie Abbrechen um den Vorgang abzubrechen.";
-
-            int dialogResult = JOptionPane.showConfirmDialog(this, message, "Unvollständige Transaktion", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
-
-            if (dialogResult == JOptionPane.CANCEL_OPTION){
-                this.dispose();
-                return;
-            }
-            else if (dialogResult == JOptionPane.OK_OPTION){
-                return;
-            }
-        }
-
-        Konto konto = Bank.Datenbank.GetKontoByKontonummer(kontonummer);
-
-        if (!konto.getKunde().GetVorname().equals(vorname)){
-            String message = "Der Vorname stimmt nicht mit der angegebenen Kontonummer überein. \n" +
-                    "Ändern sie entweder den Vornamen oder die Kontonummer.\n\n" +
-                    "Drücken Sie Abbrechen um den Vorgang abzubrechen.";
-
-            int dialogResult = JOptionPane.showConfirmDialog(this, message, "Ungültige Benutzerdaten", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
-
-            if (dialogResult == JOptionPane.CANCEL_OPTION){
-                this.dispose();
-                return;
-            }
-            else if (dialogResult == JOptionPane.OK_OPTION){
-                return;
-            }
-        }
-
-        if (!konto.getKunde().GetNachname().equals(nachname)){
-            String message = "Der Nachname stimmt nicht mit der angegebenen Kontonummer überein. \n" +
-                    "Ändern sie entweder den Nachnamen oder die Kontonummer.\n\n" +
-                    "Drücken Sie Abbrechen um den Vorgang abzubrechen.";
-
-            int dialogResult = JOptionPane.showConfirmDialog(this, message, "Ungültige Benutzerdaten", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
-
-            if (dialogResult == JOptionPane.CANCEL_OPTION){
-                this.dispose();
-                return;
-            }
-            else if (dialogResult == JOptionPane.OK_OPTION){
-                return;
-            }
-        }
-
-        konto.Auszahlung(betrag);
-        JOptionPane.showMessageDialog(this, "Auszahlung von " + betrag + " war erfolgreich.\n Ihr Kontostand beträgt " + konto.getKontost() + ".", "Einzahlung erfolgreich", JOptionPane.PLAIN_MESSAGE);
-        this.dispose();
-    }
+    //TODO: Create void Auszahlung()
 }

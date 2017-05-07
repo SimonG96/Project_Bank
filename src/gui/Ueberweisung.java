@@ -1,5 +1,10 @@
 package gui;
 
+/**
+*
+* @author d.ferber
+*/
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.*;
@@ -10,6 +15,7 @@ public class Ueberweisung extends JFrame {
     JTextField tfVornameAbs = new JTextField(20);
     JTextField tfNachnameAbs = new JTextField(20);
     JTextField tfKontonummerAbs = new JTextField(20);
+    JTextField tfBetragAbs = new JTextField(20);
     JTextField tfVornameEmpf = new JTextField(20);
     JTextField tfNachnameEmpf = new JTextField(20);
     JTextField tfKontonummerEmpf = new JTextField(20);
@@ -17,6 +23,7 @@ public class Ueberweisung extends JFrame {
     JLabel lbVornameAbs = new JLabel("Vorname");
     JLabel lbNachnameAbs = new JLabel("Nachname");
     JLabel lbKontonummerAbs = new JLabel("Kontonummer");
+    JLabel lbBetragAbs = new JLabel("Betrag");
     JLabel lbVornameEmpf = new JLabel("Vorname");
     JLabel lbNachnameEmpf = new JLabel("Nachname");
     JLabel lbKontonummerEmpf = new JLabel("Kontonummer");
@@ -39,6 +46,7 @@ public class Ueberweisung extends JFrame {
         add(tfVornameEmpf);
         add(tfNachnameEmpf);
         add(tfKontonummerEmpf);
+        add(tfBetragAbs);
         add(lbAbsender);
         add(lbVornameAbs);
         add(lbNachnameAbs);
@@ -47,6 +55,7 @@ public class Ueberweisung extends JFrame {
         add(lbNachnameEmpf);
         add(lbKontonummerEmpf);
         add(lbEmpfaenger);
+        add(lbBetragAbs);
         btUeberweisen.setBounds(75,300,150,20);
         tfVornameAbs.setBounds(10,40,150,20);
         tfNachnameAbs.setBounds(10,70,150,20);
@@ -54,6 +63,7 @@ public class Ueberweisung extends JFrame {
         tfVornameEmpf.setBounds(10,170,150,20);
         tfNachnameEmpf.setBounds(10,200,150,20);
         tfKontonummerEmpf.setBounds(10,230,150,20);
+        tfBetragAbs.setBounds(10,260,150,20);
         lbAbsender.setBounds(75,10,150,20);
         lbVornameAbs.setBounds(170,40,150,20);
         lbNachnameAbs.setBounds(170,70,150,20);
@@ -62,5 +72,6 @@ public class Ueberweisung extends JFrame {
         lbVornameEmpf.setBounds(170,170,150,20);
         lbNachnameEmpf.setBounds(170,200,150,20);
         lbKontonummerEmpf.setBounds(170,230,150,20);
+        lbBetragAbs.setBounds(170,260,150,20);
     }
 }
