@@ -181,6 +181,21 @@ public class Ueberweisung extends JFrame {
 
         Konto kontoAbs = Bank.Datenbank.GetKontoByKontonummer(kontonummerAbs);
 
+        if (kontoAbs == null){
+            String message = "Ungültige Kontonummer. \n\n" +
+                    "Drücken Sie Abbrechen um den Vorgang abzubrechen.";
+
+            int dialogResult = JOptionPane.showConfirmDialog(this, message, "Ungültige Benutzerdaten", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+
+            if (dialogResult == JOptionPane.CANCEL_OPTION){
+                this.dispose();
+                return;
+            }
+            else if (dialogResult == JOptionPane.OK_OPTION){
+                return;
+            }
+        }
+
         if (!kontoAbs.getKunde().GetVorname().equals(vornameAbs)){
             String message = "Der Vorname des Absenders stimmt nicht mit der angegebenen Kontonummer überein. \n" +
                     "Ändern sie entweder den Vornamen oder die Kontonummer.\n\n" +
@@ -214,6 +229,21 @@ public class Ueberweisung extends JFrame {
         }
 
         Konto kontoEmpf = Bank.Datenbank.GetKontoByKontonummer(kontonummerEmpf);
+
+        if (kontoEmpf == null){
+            String message = "Ungültige Kontonummer. \n\n" +
+                    "Drücken Sie Abbrechen um den Vorgang abzubrechen.";
+
+            int dialogResult = JOptionPane.showConfirmDialog(this, message, "Ungültige Benutzerdaten", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+
+            if (dialogResult == JOptionPane.CANCEL_OPTION){
+                this.dispose();
+                return;
+            }
+            else if (dialogResult == JOptionPane.OK_OPTION){
+                return;
+            }
+        }
 
         if (!kontoEmpf.getKunde().GetVorname().equals(vornameEmpf)){
             String message = "Der Vorname des Empfängers stimmt nicht mit der angegebenen Kontonummer überein. \n" +
