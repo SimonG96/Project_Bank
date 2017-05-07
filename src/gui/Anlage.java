@@ -5,12 +5,12 @@ package gui;
 * @author d.ferber
 */
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.*;
+import bank.Bank;
+import bank.Kunde;
+
 import javax.swing.*;
-import java.awt.event.*;
-import bank.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class Anlage extends JFrame {
     JButton btKundeAnlegen = new JButton("Kunden anlegen");

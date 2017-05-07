@@ -5,10 +5,8 @@ package gui;
 * @author d.ferber
 */
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class Ueberweisung extends JFrame {
     JButton btUeberweisen = new JButton("Überweisen");

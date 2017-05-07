@@ -5,11 +5,9 @@ package gui;
 * @author d.ferber
 */
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class Kontoauszug extends JFrame {
     JButton btBestaetigen = new JButton("Bestätigen");

@@ -5,10 +5,9 @@ package gui;
 * @author d.ferber
 */
 
-import javax.swing.JFrame;
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class Transaktion extends JFrame {
     JButton btUeberweisung = new JButton("Überweisung");

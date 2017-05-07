@@ -5,13 +5,8 @@ package gui;
 * @author d.ferber
 */
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.*;
 
 public class Auszug extends JFrame {
     public static void main(String[] args) {
