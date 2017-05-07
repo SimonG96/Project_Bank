@@ -275,6 +275,14 @@ public class EinAuszahlung extends JFrame {
             }
         }
 
+        if ((konto.getKontost() - betrag) < 0){
+            int dialogResult = JOptionPane.showConfirmDialog(this, "Diese Auszahlung überschreitet Ihren aktuellen Kontostand.\n Wollen Sie dennoch fortfahren?", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            if (dialogResult == JOptionPane.NO_OPTION){
+                return;
+            }
+        }
+
         konto.Auszahlung(betrag);
         JOptionPane.showMessageDialog(this, "Auszahlung von " + betrag + " war erfolgreich.\n Ihr Kontostand beträgt " + konto.getKontost() + ".", "Einzahlung erfolgreich", JOptionPane.PLAIN_MESSAGE);
         this.dispose();
