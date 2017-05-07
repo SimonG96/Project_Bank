@@ -1,8 +1,8 @@
 # Project_Bank
 
 Features: 
-    - Create new Customers
-    - print Bank Statements 
-    - withdraw Money
-    - deposit Money
-    - transfer Money between Bank Accounts
+    - Create new Customers <br>
+    - print Bank Statements <br>
+    - withdraw Money <br>
+    - deposit Money <br>
+    - transfer Money between Bank Accounts <br>
