@@ -33,7 +33,11 @@ public class Datenbank {
             CreateFile(KundenFile);
         }
         else {
-            ReadKundenFile(KundenFile);
+            try {
+                ReadKundenFile(KundenFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         
         Kontenbewegungen = new ArrayList<>();
@@ -43,7 +47,11 @@ public class Datenbank {
             CreateFile(KontenbewegungenFile);            
         }
         else {
-            ReadKontenbewegungenFile(KontenbewegungenFile);
+            try {
+                ReadKontenbewegungenFile(KontenbewegungenFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -57,11 +65,14 @@ public class Datenbank {
         }
     }
 
-    private void ReadKundenFile(File file){
+    private void ReadKundenFile(File file) throws IOException {
+        FileReader fileReader = null;
+        BufferedReader bufferedReader = null;
+
         try
         {
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
 
             String line;
             do {
@@ -89,20 +100,30 @@ public class Datenbank {
                 }
 
             } while (null != line);
-            
-            bufferedReader.close();
-            fileReader.close();
         }
         catch(Exception ex){
             System.out.println(ex.getMessage());
-        }        
+        }
+        finally {
+            if (bufferedReader != null)
+            {
+                bufferedReader.close();
+            }
+            if (fileReader != null)
+            {
+                fileReader.close();
+            }
+        }
     }
     
-    private void ReadKontenbewegungenFile(File file){
+    private void ReadKontenbewegungenFile(File file) throws IOException {
+        FileReader fileReader = null;
+        BufferedReader bufferedReader = null;
+
         try
         {
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
 
             String line;
             do {
@@ -124,32 +145,62 @@ public class Datenbank {
         catch(Exception ex){
             System.out.println(ex.getMessage());
         }
+        finally {
+            if (bufferedReader != null)
+            {
+                bufferedReader.close();
+            }
+            if (fileReader != null)
+            {
+                fileReader.close();
+            }
+        }
     }
 
-    private void WriteToFile(File file, String string){
+    private void WriteToFile(File file, String string) throws IOException {
+        FileWriter fileWriter = null;
+        BufferedWriter bufferedWriter = null;
+
         try{
-            FileWriter fileWriter = new FileWriter(file, true);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            fileWriter = new FileWriter(file, true);
+            bufferedWriter = new BufferedWriter(fileWriter);
 
             bufferedWriter.write(string);
             bufferedWriter.newLine();
-            
-            bufferedWriter.close();
-            fileWriter.close();
         }
         catch(IOException ex){
             System.out.println(ex.getMessage());
+        }
+        finally {
+            if (bufferedWriter != null)
+            {
+                bufferedWriter.close();
+            }
+            if ( fileWriter != null)
+            {
+                fileWriter.close();
+            }
         }
     }
 
     private void WriteCustomerToFile(File file, Kunde kunde){
         String customer = "<" + kunde.GetVorname()+ ";" + kunde.GetNachname() + ";" + kunde.GetOrt() + ";" + kunde.GetStraße() + ";" + kunde.GetKundennummer() + ";" + kunde.GetKonto().getKontonr()+ ";" + kunde.GetKonto().getKontost() + ">";
-        WriteToFile(file, customer);
+
+        try {
+            WriteToFile(file, customer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     private void WriteKontenbewegungToFile(File file, Kontenbewegung kontenbewegung){
         String bewegung = "<" + kontenbewegung.GetKundennummer() + ";" + kontenbewegung.GetKontonummer() + ";" + kontenbewegung.GetKontostand() + ";" + kontenbewegung.GetBewegung() + ">";
-        WriteToFile(file, bewegung);
+
+        try {
+            WriteToFile(file, bewegung);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void AddCustomer(Kunde kunde){
@@ -201,6 +252,15 @@ public class Datenbank {
         }
         else{
             return true;
+        }
+    }
+
+    public void OnClosing(){
+        KundenFile.delete();
+        CreateFile(KundenFile);
+
+        for (int i = 0; i < Kunden.size(); i++){
+            WriteCustomerToFile(KundenFile, Kunden.get(i));
         }
     }
 
