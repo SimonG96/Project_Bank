@@ -6,7 +6,6 @@ package gui;
 */
 
 import bank.Bank;
-import bank.Datenbank;
 
 import javax.swing.*;
 import java.awt.*;
@@ -72,7 +71,7 @@ public class Oberflaeche extends JFrame {
                 }
                 else if (retValue == JOptionPane.YES_OPTION){
                     Bank.Datenbank.OnClosing();
-                    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    setDefaultCloseOperation(EXIT_ON_CLOSE);
                 }
             }
         });
