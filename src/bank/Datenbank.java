@@ -89,9 +89,9 @@ public class Datenbank {
                     int kontonummer = Integer.parseInt(splittedLine[5]);
                     
                     double kontostand = 0;
-                    if (!splittedLine[4].equals("0"))
+                    if (!splittedLine[6].equals("0"))
                     {
-                        kontostand = Double.parseDouble(splittedLine[4]);
+                        kontostand = Double.parseDouble(splittedLine[6]);
                     }
                     
                     //Konto konto = new Konto(kontonummer, kontostand, this);
